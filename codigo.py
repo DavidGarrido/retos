@@ -1,7 +1,8 @@
 import re
-from datetime import datetime
-import datetime as dtm
 
+# usuario = input("ingrese su usuario: ")
+usuario = 'P&rt+l@sur'
+users_cdia = ['K?AIKG@A+R', 'FIR=TO@RLS', 'P&RT+L@SUR']
 
 def verificar_usuario(nombre):
     leng = len(nombre) #numero_de_caracteres
@@ -27,22 +28,12 @@ def verificar_usuario(nombre):
     else:
         return False
 
-
-def validate_date(d,m,a):
-    today = datetime.today()
-    nacimiento = dtm.datetime(a, m, d).strftime('%s')
-    unix_act = dtm.datetime(today.year, today.month, today.day).strftime('%s')
-    if (int(unix_act) - int(nacimiento)) > 378682992:
-        return True
-    else:  
-        return False
-
-def validate_alias(al):
-    long = len(al)
-    space = re.search(' ', al)
-    if not space and long >= 5:
-        return True
-    else:
-        return False
-
+if(not verificar_usuario(usuario)):
+    print('CDIA invalido')
+elif  usuario.upper() in users_cdia:
+    print('El CDIA ya esta en uso')
+else:
+    dia_nacimiento = int(input('Ingresa tu dia de nacimiento (01-31): '))
+    mes_nacimiento = int(input('Ingresa tu mes de nacimiento (01-12): '))
+    anio_nacimiento = int(input('Ingresa tu año de nacimiento (4 digitos): '))
 
