@@ -7,7 +7,9 @@ def verificar_usuario(nombre):
     leng = len(nombre) #numero_de_caracteres
     tipo_dato = isinstance(nombre,str)
     is_number = re.search("[0-9]",nombre)
-    arroba = nombre[6] == "@"
+    arroba = False
+    if leng > 6:
+        arroba = nombre[6] == "@"
     first_last = nombre[0] != nombre[-1]
     k = 0
     exist_plus = False
@@ -32,10 +34,8 @@ def validate_date(d,m,a):
     today = datetime.today()
     nacimiento = dtm.datetime(a, m, d).strftime('%s')
     unix_act = dtm.datetime(today.year, today.month, today.day).strftime('%s')
-    if (int(unix_act) - int(nacimiento)) > 378682992:
-        return True
-    else:  
-        return False
+    edad = int((int(unix_act) - int(nacimiento))/31556926)
+    return edad
 
 def validate_alias(al):
     long = len(al)
